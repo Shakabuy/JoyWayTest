@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    public float DropForce = 1f;
-    private GameItem CurrentItem;
+    public float dropForce = 1f;
+    private GameItem _currentItem;
 
-    public bool HasItem => CurrentItem != null;
+    public bool HasItem => _currentItem != null;
 
     private void LateUpdate()
     {
         if (!HasItem) { return; }
 
-        CurrentItem.Position = transform.position;
-        CurrentItem.Rotation = transform.rotation;
+        _currentItem.Position = transform.position;
+        _currentItem.Rotation = transform.rotation;
     }
 
     public void Action()
     {
-        CurrentItem.Action();
+        _currentItem.Action();
     }
 
     public void Drop()
     {
-        CurrentItem.SetPhysics(true);
-        CurrentItem.Rigidbody.AddForce(transform.forward * DropForce, ForceMode.VelocityChange);
-        CurrentItem.Rigidbody.AddRelativeTorque(Random.insideUnitSphere * DropForce, ForceMode.VelocityChange);
-        CurrentItem = null;
+        _currentItem.SetPhysics(true);
+        _currentItem.rigidbody.AddForce(transform.forward * dropForce, ForceMode.VelocityChange);
+        _currentItem.rigidbody.AddRelativeTorque(Random.insideUnitSphere * dropForce, ForceMode.VelocityChange);
+        _currentItem = null;
     }
 
     public void Equip(GameItem item)
     {
-        CurrentItem = item;
-        CurrentItem.SetPhysics(false);
+        _currentItem = item;
+        _currentItem.SetPhysics(false);
     }
 }

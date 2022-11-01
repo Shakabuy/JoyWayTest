@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public abstract class StatusBar : MonoBehaviour
 {
-    public TextMeshProUGUI TMProText;
-    public Image Bar;
+    public TextMeshProUGUI targetText;
+    public Image barImage;
 
     [Space]
-    public Color StartColor;
-    public Color EndColor;
+    public Color startColor;
+    public Color endColor;
 
     public abstract event Action Binding;
 
@@ -27,10 +27,10 @@ public abstract class StatusBar : MonoBehaviour
 
     protected virtual void RefreshView()
     {
-        TMProText.text = Text;
-        Bar.fillAmount = FillAmount;
+        targetText.text = Text;
+        barImage.fillAmount = FillAmount;
 
-        Bar.color = Color.Lerp(StartColor, EndColor, FillAmount);
+        barImage.color = Color.Lerp(startColor, endColor, FillAmount);
     }
 
     private void OnDestroy()

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class WaterBall : PoolElement
 {
-    public float LifeTime = 3f;
-    public DamageInfo DamageInfo;
-    public Rigidbody Rigidbody;
+    public float lifeTime = 3f;
+    public DamageInfo damageInfo;
+    public new Rigidbody rigidbody;
 
     public void Throw(Vector3 startPosition, Vector3 force)
     {
         ResetPhycics();
 
         transform.position = startPosition;
-        Rigidbody.AddForce(force, ForceMode.VelocityChange);
+        rigidbody.AddForce(force, ForceMode.VelocityChange);
 
         StopAllCoroutines();
         StartCoroutine(LifeCycleCoroutine());
@@ -21,20 +21,20 @@ public class WaterBall : PoolElement
 
     IEnumerator LifeCycleCoroutine()
     {
-        yield return new WaitForSeconds(LifeTime);
+        yield return new WaitForSeconds(lifeTime);
         ReturnToPool();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Damager.GameObjectDamage(DamageInfo, collision.gameObject);
+        Damager.GameObjectDamage(damageInfo, collision.gameObject);
         ReturnToPool();
     }
 
     private void ResetPhycics()
     {
-        Rigidbody.velocity = Vector3.zero;
-        Rigidbody.angularVelocity = Vector3.zero;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
     }
 
     protected override void ReturnToPool()

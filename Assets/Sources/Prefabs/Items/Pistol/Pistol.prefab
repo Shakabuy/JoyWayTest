@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5624924653852446924}
   m_Father: {fileID: 0}
@@ -46,13 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ede648c8bbf41e44bf794dee65dc062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 247716289244943058}
-  Collider: {fileID: 247716289244943061}
-  DamageInfo:
+  rigidbody: {fileID: 247716289244943058}
+  collider: {fileID: 247716289244943061}
+  damageInfo:
     Amount: 20
     Type: 0
-  Distance: 100
-  OutputBarrel: {fileID: 247716290773236225}
+  distance: 100
+  outputBarrel: {fileID: 247716290773236225}
 --- !u!54 &247716289244943058
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,6 +110,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 247716290773236225}
   m_RootOrder: 0
@@ -124,6 +126,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -246,6 +249,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.141, z: 0.689}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 247716289675168955}
   m_Father: {fileID: 5624924653852446924}

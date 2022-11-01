@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float Speed;
-    public CharacterController Controller;
+    public float speed;
+    public CharacterController controller;
 
     private void Update()
     {
@@ -13,13 +13,13 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * input.x + transform.forward * input.y;
 
-        Move(move * Speed * Time.deltaTime);
+        Move(move * speed * Time.deltaTime);
     }
 
 
     public void Move(Vector3 move)
     {
-        Controller.Move(move);
+        controller.Move(move);
     }
 
     public void Rotate(Vector3 v)

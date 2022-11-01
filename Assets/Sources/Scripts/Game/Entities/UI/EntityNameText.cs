@@ -9,7 +9,7 @@ public class EntityNameText : MonoBehaviour
 
     private void Awake()
     {
-        Text.text = Entity.Data.Name;
+        Text.text = Entity.data.Name;
     }
 
     private void Reset()

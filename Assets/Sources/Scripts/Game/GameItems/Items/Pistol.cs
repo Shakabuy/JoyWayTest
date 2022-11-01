@@ -5,13 +5,13 @@ using UnityEngine;
 public class Pistol : GameItem
 {
     [Header("Pistol")]
-    public DamageInfo DamageInfo;
-    public float Distance;
-    public Transform OutputBarrel;
+    public DamageInfo damageInfo;
+    public float distance;
+    public Transform outputBarrel;
 
     public override void Action()
     {
-        Ray ray = new Ray(OutputBarrel.position, transform.forward);
-        Damager.RayDamage(DamageInfo, ray, Distance);
+        Ray ray = new Ray(outputBarrel.position, transform.forward);
+        Damager.RayDamage(damageInfo, ray, distance);
     }
 }

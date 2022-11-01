@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.706, y: 0.9, z: -0.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 724504275570674709}
   - {fileID: 974833269689630758}
@@ -47,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c8623f98c23d94fb2817c03a0680f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 32987593447914418}
-  Collider: {fileID: 32987593447914419}
-  StartForce: 15
-  SpawnPoint: {fileID: 974833269689630758}
-  WaterBallPrefab: {fileID: 3467356866452185290, guid: 384b4a8bc187010469018b09575729e5, type: 3}
+  rigidbody: {fileID: 32987593447914418}
+  collider: {fileID: 32987593447914419}
+  startForce: 15
+  spawnPoint: {fileID: 974833269689630758}
+  waterBallPrefab: {fileID: 3467356866452185290, guid: 384b4a8bc187010469018b09575729e5, type: 3}
+  maxCount: 15
 --- !u!65 &32987593447914419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,6 +109,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.346}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 32987593447914421}
   m_RootOrder: 1

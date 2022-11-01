@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class Pool<T> : IPool where T : PoolElement
 {
-    private Transform Container;
-    private GameObject Prefab = null;
-    private List<T> Elements = new List<T>();
-    private bool IsLimited = false;
+    private Transform _container;
+    private GameObject _prefab = null;
+    private List<T> _elements = new List<T>();
+    private bool _isLimited = false;
 
     public Pool(int count, GameObject prefab, bool isLimited = false, Transform localParent = null)
     {
-        Elements.Clear();
+        _elements.Clear();
 
-        Prefab = prefab;
-        Container = CreatePoolContainer(localParent, $"Container ({prefab.name})");
-        Elements.AddRange(CreateElements(count));
-        IsLimited = isLimited;
+        _prefab = prefab;
+        _container = CreatePoolContainer(localParent, $"Container ({prefab.name})");
+        _elements.AddRange(CreateElements(count));
+        _isLimited = isLimited;
     }
 
     public Transform CreatePoolContainer(Transform containerParent, string name = "pool_container")
@@ -30,7 +30,7 @@ public class Pool<T> : IPool where T : PoolElement
 
     private T CreateElement()
     {
-        var element = GameObject.Instantiate(Prefab, Container).GetComponent<T>();
+        var element = GameObject.Instantiate(_prefab, _container).GetComponent<T>();
         element.InitPoolElement(this);
         ReturnToPool(element);
         return element;
@@ -51,12 +51,12 @@ public class Pool<T> : IPool where T : PoolElement
         var element = Get();
         element.transform.SetParent(newParent, false);
         element.gameObject.SetActive(true);
-        element.IsInPool = false;
+        element.isInPool = false;
 
-        if (IsLimited)
+        if (_isLimited)
         {
-            Elements.Insert(Elements.Count - 1, element);
-            Elements.RemoveAt(0);
+            _elements.Insert(_elements.Count - 1, element);
+            _elements.RemoveAt(0);
         }
 
         return element;
@@ -64,18 +64,18 @@ public class Pool<T> : IPool where T : PoolElement
 
     public void ReturnToPool(PoolElement poolElement)
     {
-        poolElement.transform.SetParent(Container);
+        poolElement.transform.SetParent(_container);
         poolElement.gameObject.SetActive(false);
-        poolElement.IsInPool = true;
+        poolElement.isInPool = true;
     }
 
     private T Get()
     {
-        for (int i = 0; i < Elements.Count; i++)
+        for (int i = 0; i < _elements.Count; i++)
         {
-            if (Elements[i].IsInPool || IsLimited)
+            if (_elements[i].isInPool || _isLimited)
             {
-                return Elements[i];
+                return _elements[i];
             }
         }
 

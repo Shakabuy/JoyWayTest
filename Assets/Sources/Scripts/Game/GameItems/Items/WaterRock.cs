@@ -3,22 +3,22 @@ using UnityEngine;
 public class WaterRock : GameItem
 {
     [Header("WaterRock")]
-    public float StartForce = 5f;
-    public Transform SpawnPoint;
-    public GameObject WaterBallPrefab;
+    public float startForce = 5f;
+    public Transform spawnPoint;
+    public GameObject waterBallPrefab;
 
     [Header("Pooling")]
-    public int MaxCount = 15;
+    public int maxCount = 15;
 
-    private Pool<WaterBall> WaterBallPool;
+    private Pool<WaterBall> _waterBallPool;
 
     private void Awake()
     {
-        WaterBallPool = new Pool<WaterBall>(MaxCount, WaterBallPrefab, true);
+        _waterBallPool = new Pool<WaterBall>(maxCount, waterBallPrefab, true);
     }
 
     public override void Action()
     {
-        WaterBallPool.Get().Throw(SpawnPoint.position, transform.forward * StartForce);
+        _waterBallPool.Get().Throw(spawnPoint.position, transform.forward * startForce);
     }
 }

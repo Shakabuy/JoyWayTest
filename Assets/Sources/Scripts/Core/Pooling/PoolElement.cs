@@ -6,15 +6,15 @@ public class PoolElement : MonoBehaviour
 {
     public virtual void InitPoolElement(IPool pool)
     {
-        Pool = pool;
+        _pool = pool;
     }
 
     [HideInInspector]
-    public bool IsInPool;
-    protected IPool Pool;
+    public bool isInPool;
+    protected IPool _pool;
 
     protected virtual void ReturnToPool()
     {
-        Pool.ReturnToPool(this);
+        _pool.ReturnToPool(this);
     }
 }

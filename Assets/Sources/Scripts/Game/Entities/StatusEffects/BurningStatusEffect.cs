@@ -3,27 +3,27 @@ using UnityEngine;
 public class BurningStatusEffect : StatusEffect
 {
     [Header("Burning")]
-    public int DamageCount = 10;
-    public float Interval = 1f;
-    public Color Color = Color.red;
-    public DamageInfo DamageInfo;
+    public int damageCount = 10;
+    public float interval = 1f;
+    public Color color = Color.red;
+    public DamageInfo damageInfo;
 
-    private int CurrentCount = 0;
-    private float Timer = 0f;
+    private int _currentCount = 0;
+    private float _timer = 0f;
 
     public override void Activate()
     {
         base.Activate();
-        Entity.Render.SetColor(Color);
-        CurrentCount = DamageCount;
+        Entity.render.SetColor(color);
+        _currentCount = damageCount;
     }
 
     public override void Deactivate()
     {
         base.Deactivate();
-        Entity.Render.ToDefault();
-        CurrentCount = 0;
-        Timer = 0f;
+        Entity.render.ToDefault();
+        _currentCount = 0;
+        _timer = 0f;
     }
 
 
@@ -31,15 +31,15 @@ public class BurningStatusEffect : StatusEffect
     {
         if (IsActive)
         {
-            if (CurrentCount > 0)
+            if (_currentCount > 0)
             {
-                Timer += dt;
+                _timer += dt;
 
-                if (Timer >= 1f)
+                if (_timer >= 1f)
                 {
-                    CurrentCount--;
-                    Timer = 0f;
-                    Entity.Damage(DamageInfo);
+                    _currentCount--;
+                    _timer = 0f;
+                    Entity.Damage(damageInfo);
                 }
             }
             else { Deactivate(); }

@@ -19,13 +19,13 @@ public static class InputManager
     //Debug
     public static event Action OnDebug;
 
-    private static bool isInit = false;
+    private static bool _isInit = false;
 
-    private static Vector2 mouseAxis;
-    private static Vector2 movementAxis;
+    private static Vector2 _mouseAxis;
+    private static Vector2 _movementAxis;
     private static void Init()
     {
-        if (isInit)
+        if (_isInit)
         {
             return;
         }
@@ -37,7 +37,7 @@ public static class InputManager
 
         updater.OnUpdateCallback += UpdateCallback;
 
-        isInit = true;
+        _isInit = true;
     }
 
     private static void UpdateCallback()
@@ -74,20 +74,20 @@ public static class InputManager
 
         //Axis
 
-        mouseAxis.x = Input.GetAxis("Mouse X");
-        mouseAxis.y = Input.GetAxis("Mouse Y");
+        _mouseAxis.x = Input.GetAxis("Mouse X");
+        _mouseAxis.y = Input.GetAxis("Mouse Y");
 
-        movementAxis.x = Input.GetAxis("Horizontal");
-        movementAxis.y = Input.GetAxis("Vertical");
+        _movementAxis.x = Input.GetAxis("Horizontal");
+        _movementAxis.y = Input.GetAxis("Vertical");
     }
 
     public static Vector2 GetMouseAxis()
     {
-        return mouseAxis;
+        return _mouseAxis;
     }
 
     public static Vector2 GetMovementAxis()
     {
-        return movementAxis;
+        return _movementAxis;
     }
 }

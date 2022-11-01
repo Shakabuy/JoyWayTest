@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class EntityHealthStatusBar : StatusBar
 {
-    public Entity Entity;
-    protected override string Text => $"{Entity.Health} / {Entity.Data.MaxHealth}";
-    protected override float FillAmount => Entity.Data.HealthPercent / 100f;
+    public Entity entity;
+    protected override string Text => $"{entity.Health} / {entity.data.MaxHealth}";
+    protected override float FillAmount => entity.data.HealthPercent / 100f;
 
     public override event Action Binding
     {
-        add => Entity.OnChangedHealth += value;
-        remove => Entity.OnChangedHealth -= value;
+        add => entity.OnChangedHealth += value;
+        remove => entity.OnChangedHealth -= value;
     }
 }

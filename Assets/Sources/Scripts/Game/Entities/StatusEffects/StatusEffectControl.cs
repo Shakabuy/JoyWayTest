@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class StatusEffectControl : MonoBehaviour
 {
-    public List<StatusEffect> StatusEffects = new List<StatusEffect>();
+    public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
     public void Init(Entity entity)
     {
-        foreach (var statusEffect in StatusEffects)
+        foreach (var statusEffect in statusEffects)
         {
             statusEffect.Init(entity);
         }
@@ -36,7 +36,7 @@ public class StatusEffectControl : MonoBehaviour
                 break;
         }
 
-        foreach (var statusEffect in StatusEffects)
+        foreach (var statusEffect in statusEffects)
         {
             if (statusEffect.IsActive)
             {
@@ -47,21 +47,21 @@ public class StatusEffectControl : MonoBehaviour
 
     private bool HasActive(StatusEffectType type)
     {
-        return StatusEffects.Any(x => x.IsActive && x.Type == type);
+        return statusEffects.Any(x => x.IsActive && x.Type == type);
     }
 
     private void Activate(StatusEffectType type)
     {
-        StatusEffects.Where(x => x.Type == type).ForEach(x => x.Activate());
+        statusEffects.Where(x => x.Type == type).ForEach(x => x.Activate());
     }
 
     private void Deactivate(StatusEffectType type)
     {
-        StatusEffects.Where(x => x.Type == type).ForEach(x => x.Deactivate());
+        statusEffects.Where(x => x.Type == type).ForEach(x => x.Deactivate());
     }
 
     private void Update()
     {
-        StatusEffects.Where(x => x.IsActive).ForEach(x => x.UpdateState(Time.deltaTime));
+        statusEffects.Where(x => x.IsActive).ForEach(x => x.UpdateState(Time.deltaTime));
     }
 }

@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class EntityRender : MonoBehaviour
 {
-    public string ColorKey = "_Color_Overlay";
-    public Color DefaultColor = Color.white;
+    public string colorKey = "_Color_Overlay";
+    public Color defaultColor = Color.white;
 
-    [SerializeField]
-    private Renderer[] Renderers;
+    [SerializeField] private Renderer[] renderers;
 
     private void Awake()
     {
-        Renderers.InstantiateMaterials();
+        renderers.InstantiateMaterials();
     }
 
     public void SetColor(Color color)
     {
-        Renderers.SetColor(ColorKey, color);
+        renderers.SetColor(colorKey, color);
     }
 
     public void ToDefault()
     {
-        SetColor(DefaultColor);
+        SetColor(defaultColor);
     }
 }

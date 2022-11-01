@@ -5,27 +5,27 @@ using UnityEngine;
 public class FireRock : GameItem
 {
     [Header("FireRock")]
-    public DamageInfo DamageInfo;
-    public ParticleSystem ParticleSystem;
-    public ParticleSystemObserver ParticleSystemObserver;
+    public DamageInfo damageInfo;
+    public new ParticleSystem particleSystem;
+    public ParticleSystemObserver particleSystemObserver;
 
     private void Awake()
     {
-        ParticleSystemObserver.OnParticleCollisionEvent += OnParticleCollisionCallback;
+        particleSystemObserver.OnParticleCollisionEvent += OnParticleCollisionCallback;
     }
 
     public override void Action()
     {
-        ParticleSystem.Play();
+        particleSystem.Play();
     }
 
     private void OnParticleCollisionCallback(GameObject other)
     {
-        Damager.GameObjectDamage(DamageInfo, other);
+        Damager.GameObjectDamage(damageInfo, other);
     }
 
     private void OnDestroy()
     {
-        ParticleSystemObserver.OnParticleCollisionEvent -= OnParticleCollisionCallback;
+        particleSystemObserver.OnParticleCollisionEvent -= OnParticleCollisionCallback;
     }
 }

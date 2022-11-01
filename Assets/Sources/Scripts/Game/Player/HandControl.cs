@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HandControl : MonoBehaviour
 {
-    public Hand LeftHand;
-    public Hand RightHand;
+    public Hand leftHand;
+    public Hand rightHand;
 
     [Header("For Raycasting")]
-    public Camera Camera;
-    public float Distance;
+    public new Camera camera;
+    public float distance;
 
 
     private void Awake()
@@ -22,19 +22,19 @@ public class HandControl : MonoBehaviour
 
     public void Action_Left()
     {
-        ActionHand(LeftHand);
+        ActionHand(leftHand);
     }
     public void Action_Right()
     {
-        ActionHand(RightHand);
+        ActionHand(rightHand);
     }
     public void FindItem_Left()
     {
-        FindItem(LeftHand);
+        FindItem(leftHand);
     }
     public void FindItem_Right()
     {
-        FindItem(RightHand);
+        FindItem(rightHand);
     }
 
     private void FindItem(Hand hand)
@@ -44,7 +44,7 @@ public class HandControl : MonoBehaviour
             hand.Drop();
         }
 
-        if (Physics.Raycast(Camera.GetRay(), out var hit, Distance))
+        if (Physics.Raycast(camera.GetRay(), out var hit, distance))
         {
             if (hit.collider.TryGetComponent<GameItem>(out var item))
             {

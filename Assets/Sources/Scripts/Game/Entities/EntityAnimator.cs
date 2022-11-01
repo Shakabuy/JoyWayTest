@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class EntityAnimator : MonoBehaviour
 {
-    public Animator Animator;
+    public Animator animator;
 
     [Space]
-    public string DamageEffectKey = "damage_effect";
-    private Entity Entity;
+    public string damageEffectKey = "damage_effect";
+    private Entity _entity;
     public void Init(Entity entity)
     {
-        Entity = entity;
-        Entity.OnDamage += OnDamageCallback;
+        _entity = entity;
+        _entity.OnDamage += OnDamageCallback;
     }
 
     private void OnDamageCallback(DamageInfo damageInfo)
     {
         if(damageInfo.Amount == 0) { return; }
-        Animator.Play(DamageEffectKey);
+        animator.Play(damageEffectKey);
     }
 
     private void OnDestroy()
     {
-        Entity.OnDamage -= OnDamageCallback;
+        _entity.OnDamage -= OnDamageCallback;
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class GameItem : MonoBehaviour
 {
     [Header("GameItem")]
-    public Rigidbody Rigidbody;
-    public Collider Collider;
+    public new Rigidbody rigidbody;
+    public new Collider collider;
 
     public Vector3 Position
     {
@@ -24,7 +24,7 @@ public abstract class GameItem : MonoBehaviour
 
     public virtual void SetPhysics(bool enabled)
     {
-        Rigidbody.isKinematic = !enabled;
-        Collider.enabled = enabled;
+        rigidbody.isKinematic = !enabled;
+        collider.enabled = enabled;
     }
 }

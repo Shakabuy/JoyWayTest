@@ -3,37 +3,37 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour, IDamageable
 {
-    public EntityData Data;
-    public EntityRender Render;
-    public EntityAnimator Animator;
-    public StatusEffectControl StatusEffectControl;
+    public EntityData data;
+    public EntityRender render;
+    public EntityAnimator animator;
+    public StatusEffectControl statusEffectControl;
 
     public event Action OnChangedHealth;
     public event Action<DamageInfo> OnDamage;
 
     public float Health
     {
-        get => Data.CurrentHealth;
+        get => data.CurrentHealth;
         set
         {
-            if (Data.CurrentHealth == value) { return; }
-            Data.CurrentHealth = value;
+            if (data.CurrentHealth == value) { return; }
+            data.CurrentHealth = value;
             OnChangedHealth?.Invoke();
         }
     }
 
     private void Awake()
     {
-        Health = Data.StartHealth;
-        Animator.Init(this);
-        StatusEffectControl.Init(this);
+        Health = data.StartHealth;
+        animator.Init(this);
+        statusEffectControl.Init(this);
     }
 
     public void Damage(DamageInfo damageInfo)
     {
         if(Health > 0)
         {
-            StatusEffectControl.CheckDamage(ref damageInfo);
+            statusEffectControl.CheckDamage(ref damageInfo);
 
             Health -= damageInfo.Amount;
 
@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour, IDamageable
 
     public void Resurrect()
     {
-        Health = Data.MaxHealth;
+        Health = data.MaxHealth;
         gameObject.SetActive(true);
     }
 

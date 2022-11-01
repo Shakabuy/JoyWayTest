@@ -6,21 +6,21 @@ using UnityEngine;
 public class WetnessStatusEffect : StatusEffect
 {
     [Header("Wetness")]
-    public float MaxPoints = 100f;
-    public Color Color = Color.blue;
+    public float maxPoints = 100f;
+    public Color color = Color.blue;
 
     public event Action OnChangedPoints;
 
-    private float points;
+    private float _points;
     public float Points
     {
-        get => points;
+        get => _points;
         set
         {
-            if(points == value) { return; }
-            points = Mathf.Clamp(value, 0, MaxPoints);
+            if(_points == value) { return; }
+            _points = Mathf.Clamp(value, 0, maxPoints);
 
-            if(points == 0)
+            if(_points == 0)
             {
                 Deactivate();
             }
@@ -28,7 +28,7 @@ public class WetnessStatusEffect : StatusEffect
             OnChangedPoints?.Invoke();
         }
     }
-    public float PointsPercent { get => Mathf.Clamp((Points / MaxPoints) * 100f, 0f, 100f); }
+    public float PointsPercent { get => Mathf.Clamp((Points / maxPoints) * 100f, 0f, 100f); }
 
     public override void CheckDamage(ref DamageInfo damageInfo)
     {
@@ -53,13 +53,13 @@ public class WetnessStatusEffect : StatusEffect
     public override void Activate()
     {
         base.Activate();
-        Entity.Render.SetColor(Color);
+        Entity.render.SetColor(color);
     }
 
     public override void Deactivate()
     {
         base.Deactivate();
-        Entity.Render.ToDefault();
+        Entity.render.ToDefault();
     }
 
     public override void UpdateState(float dt)
